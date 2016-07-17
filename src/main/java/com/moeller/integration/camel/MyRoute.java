@@ -12,7 +12,9 @@ public class MyRoute extends RouteBuilder {
 
   @Override
   public void configure() throws Exception {
-    from("mqtt:temprecv?host=tcp://192.168.33.10:1883&subscribeTopicName=temperature/+").to("mqtt:tempsend?host=tcp://192.168.33.10:1883");
+    from("mqtt:temprecv?host=tcp://192.168.33.10:1883&subscribeTopicName=temperature/+")
+        .to("log:com.moeller.integration.camel")
+        .to("mqtt:tempsend?host=tcp://192.168.33.10:1883");
   }
 
 }
